@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+SK:wght@100..400&display=swap');
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: "Playwrite IS", cursive;
+  background-color: darkgray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.button {
+  font-size: 30px;
+  padding: 10px;
+  margin: 10px;
+  background-color: rgb(255, 173, 173);
+  cursor: pointer;
+  border: solid black;
+  border-radius: 10px;
+}
+
+.button:hover {
+  background-color: #45a049;
+}
+
+p {
+  color: rgb(0, 128, 115);
+  text-align: center;
+}
+
+.input-style {
+  font-size: 25px;
+  border: 2px solid black;
+  border-radius: 4px;
+  padding: 10px;
+  width: 200px;
+  margin-bottom: 10px;
+  background-color: white;
+  text-align: center;
+}

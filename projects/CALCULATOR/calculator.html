@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>MY CALCULATOR</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <u>
+    <h1 class="text-centre">Calculate using me...</h1>
+  </u>
+  <p class="text-centre"><i><b>Let's do some calculations...</b></i></p>
+
+  <div  id="calc" class="input-style" align-items='center'>&#8709;
+  </div>
+
+  <div class="buttons">
+    <div>
+      <button class="button" onclick="appendCalculation('1')">1</button>
+      <button class="button" onclick="appendCalculation('2')">2</button>
+      <button class="button" onclick="appendCalculation('3')">3</button>
+      <button class="button" onclick="appendCalculation(' + ')">+</button>
+    </div>
+
+    <div>
+      <button class="button" onclick="appendCalculation('4')">4</button>
+      <button class="button" onclick="appendCalculation('5')">5</button>
+      <button class="button" onclick="appendCalculation('6')">6</button>
+      <button class="button" onclick="appendCalculation(' - ')">-</button>
+    </div>
+
+    <div>
+      <button class="button" onclick="appendCalculation('7')">7</button>
+      <button class="button" onclick="appendCalculation('8')">8</button>
+      <button class="button" onclick="appendCalculation('9')">9</button>
+      <button class="button" onclick="appendCalculation(' * ')">*</button>
+    </div>
+
+    <div>
+      <button class="button" onclick="appendCalculation('0')">0</button>
+      <button class="button" onclick="appendCalculation('.')">.</button>
+      <button class="button" onclick="appendCalculation(' / ')">/</button>
+      <button class="button" onclick="calculateResult()">=</button>
+    </div>
+
+    <button class="button" onclick="clearCalculation()">Clear</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

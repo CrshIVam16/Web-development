@@ -1,0 +1,131 @@
+<!-- This is updated rock-paper-scissors game where the previous game result will not be deleted on updating the page but will only delete if reset is pressed -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ROCK-PAPER-SCISSORS</title>
+  <style>
+    html,
+    body {
+      font-family: 'Algerian';
+      font-size: 21px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: aqua;
+    }
+
+    .button {
+      font-size: 25px;
+      padding: 20px;
+      margin: 15px;
+      border: 10px;
+      border-radius: 20px;
+      background-color: aquamarine;
+    }
+
+    .para {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h1><u>ROCK-PAPER-SCISSORS</u></h1>
+  <div>
+    <button class="button" onclick="userChoice('rock')">ROCK</button>
+    <button class="button" onclick="userChoice('paper')">PAPER</button>
+    <button class="button" onclick="userChoice('scissors')">SCISSORS</button>
+  </div>
+
+  <div class="para">
+    <p><span id="result">Make your move!</span></p><br>
+    <p>Total: <span id="total"></span></p>
+    <!--no need to add 0 externally, will be automatically if JSON.parse() is null-->
+    <p>Wins: <span id='wins'></span></p>
+    <p>Losses: <span id='losses'></span></p>
+    <p>Ties: <span id='ties'></span></p><br>
+    <button class="button" onclick="resetScores()">RESET</button>
+  </div>
+
+  <script>
+    //This part initializes the score from localStorage if available or sets it to default values. It then updates the HTML elements with the current scores.
+    const score = JSON.parse(localStorage.getItem('score')) || {
+      losses: 0,
+      wins: 0,
+      ties: 0,
+      total: 0
+    };
+
+    /*
+    Same as above logic written after the OR operator
+    if(!scores){
+      score={
+      wins:0,
+      losses:0,
+      ties=0
+      };
+    }
+    */
+
+    // Initialize scores on page load
+    document.getElementById('losses').textContent = score.losses;
+    document.getElementById('wins').textContent = score.wins;
+    document.getElementById('ties').textContent = score.ties;
+    document.getElementById('total').textContent = score.total;
+
+    function userChoice(playerChoice) {
+      let choices = ['rock', 'paper', 'scissors'];
+      let computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+      let lossesElement = document.getElementById('losses');
+      let winsElement = document.getElementById('wins');
+      let tiesElement = document.getElementById('ties');
+      let totalElement = document.getElementById('total');
+      let resultElement = document.getElementById('result');
+
+      if (playerChoice === computerChoice) {
+        score.ties++;
+      } else if (
+        (playerChoice === 'rock' && computerChoice === 'scissors') ||
+        (playerChoice === 'paper' && computerChoice === 'rock') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper')
+      ) {
+        score.wins++;
+      } else {
+        score.losses++;
+      }
+      score.total++;
+
+      resultElement.innerText = `You chose: ${playerChoice}\nComputer chose: ${computerChoice}`;
+      lossesElement.textContent = score.losses;
+      winsElement.textContent = score.wins;
+      tiesElement.textContent = score.ties;
+      totalElement.textContent = score.total;
+
+      localStorage.setItem('score', JSON.stringify(score)); // Store the updated scores in localStorage
+    }
+
+    function resetScores() {
+      // Reset the score object
+      score.losses = 0;
+      score.wins = 0;
+      score.ties = 0;
+      score.total = 0;
+
+      // Update the display
+      document.getElementById('losses').textContent = score.losses;
+      document.getElementById('wins').textContent = score.wins;
+      document.getElementById('ties').textContent = score.ties;
+      document.getElementById('total').textContent = score.total;
+      document.getElementById('result').textContent = 'Make your move!';
+
+      // Clear the scores from localStorage
+      localStorage.setItem('score', JSON.stringify(score));
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Calculator</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <!-- 
+  margin insert gaps between the buttons
+  whereas padding insert gaps inside the buttons
+
+  if used on body,html then:
+  margin: will allow us to move the page up and down
+  padding: will allow us to move the page back and forth
+  -->
+  <h1>Calculate using me...</h1>
+  <p><i><b>Let's do some calculations...</b></i></p>
+  <input class="input-style" onkeydown="handleThroughKey(event)" placeholder="Enter expression" readonly>
+  <div>
+    <div>
+      <button class="button" onclick="appendCalculation('1')">1</button>
+      <button class="button" onclick="appendCalculation('2')">2</button>
+      <button class="button" onclick="appendCalculation('3')">3</button>
+      <button class="button" onclick="appendCalculation(' + ')">+</button>
+    </div>
+    <div>
+      <button class="button" onclick="appendCalculation('4')">4</button>
+      <button class="button" onclick="appendCalculation('5')">5</button>
+      <button class="button" onclick="appendCalculation('6')">6</button>
+      <button class="button" onclick="appendCalculation(' - ')">-</button>
+    </div>
+    <div>
+      <button class="button" onclick="appendCalculation('7')">7</button>
+      <button class="button" onclick="appendCalculation('8')">8</button>
+      <button class="button" onclick="appendCalculation('9')">9</button>
+      <button class="button" onclick="appendCalculation(' * ')">*</button>
+    </div>
+    <div>
+      <button class="button" onclick="appendCalculation('0')">0</button>
+      <button class="button" onclick="appendCalculation('.')">.</button>
+      <button class="button" onclick="appendCalculation(' / ')">/</button>
+      <button class="button" onclick="calculateResult()">=</button>
+    </div>
+    <button class="button" onclick="clearCalculation()">Clear</button>
+  </div>
+  <script>
+    let calculation = '';
+
+    function handleThroughKey(event) {
+      const validKeys = '0123456789+-*/.';
+
+      if (event.key === 'Enter' || event.key === '=') {
+        event.preventDefault(); // Prevent default actions for Enter and = [which the browsers might have in their codebase]
+        calculateResult();
+      } else if (event.key === 'Backspace') {
+        calculation = calculation.slice(0, -1);
+        //calculation.slice(0, -1) will slice the string starting from index 0 up to (but not including) the last character (which is at index -1).
+        updateDisplay();
+      } else if (validKeys.includes(event.key)) {
+        appendCalculation(event.key);
+      } else {
+        alert("Please enter the valid input!");
+        event.preventDefault(); // Prevent any other keys
+      }
+    }
+
+    function appendCalculation(value) {
+      calculation += value;
+      updateDisplay();
+    }
+
+    function calculateResult() {
+      try {
+        calculation = eval(calculation).toString();
+      } catch (e) {
+        calculation = 'Error';
+      }
+      updateDisplay();
+    }
+
+    function clearCalculation() {
+      calculation = '';
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      const inputElement = document.querySelector('.input-style');
+      inputElement.value = calculation;
+      inputElement.scrollLeft = inputElement.scrollWidth; // Ensure it scrolls to the end of the input field
+    }
+  </script>
+</body>
+
+</html>
