@@ -1,0 +1,36 @@
+<!-- This is rock-paper-scissors game where the previous game result will not be deleted on updating the page but will only delete if reset is pressed -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>HEAD AND TAILS</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <h1><u>HEAD AND TAILS</u></h1>
+  <div class="choices">
+    <button class="button" onclick="userChoice('head')" class="choice-button">
+      <img src="img/coin's head.jpg"><br>
+      <b>HEAD</b>
+    </button>
+    <button class="button" onclick="userChoice('tails')" class="choice-button">
+      <img src="img/coin's tails.jpg"><br>
+      <b>TAILS</b>
+    </button>
+  </div>
+
+
+  <div class="result" id="result">Make your move!</div>
+  <div class="stats">
+    <p>Total: <span id="total"></span></p>
+    <p>Wins: <span id='wins'></span></p>
+    <p>Losses: <span id='losses'></span></p>
+    <button class="reset" onclick="resetScores()">RESET</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

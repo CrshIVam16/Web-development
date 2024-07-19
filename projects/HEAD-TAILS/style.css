@@ -1,0 +1,77 @@
+/* Styling the body to use a specific font and center the content */
+html,
+body {
+  font-family: 'Algerian';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: grey;
+  padding: 20px;
+}
+
+/* Styling the main heading */
+h1 {
+  color: black;
+}
+
+/* Styling the container for the choice buttons */
+.choices {
+  margin: 20px;
+  display: flex;
+}
+
+.choice-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+  background-color: light grey;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.choice-button:hover {
+  background-color: grey;
+}
+
+/* Styling the choice buttons */
+.choices button {
+  font-size: 20px;
+  padding: 20px 30px;
+  margin: 20px;
+  border-radius: 50px;
+}
+
+/* Styling the result display */
+.result {
+  font-size: 30px;
+  margin: 20px;
+  color: black;
+}
+
+.reset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 25px;
+  color: black;
+  border-radius: 10px;
+  background-color:aqua;
+}
+
+/* Styling the statistics display */
+.stats {
+  margin: 10px;  /*adds the scroll bar at the side*/
+}
+
+/* Styling each statistic */
+.stats p {
+  font-size: 25px;
+  margin: 5px;
+}
+
+/* For resizing the images*/
+img {
+  height: 200px;
+  width: 200px;
+}
