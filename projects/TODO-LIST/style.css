@@ -1,0 +1,44 @@
+body {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 18px;
+  background-color: bisque;
+}
+
+.todo-grid {
+  display: grid;
+  grid-template-columns: 200px 150px 100px;
+  column-gap: 10px;
+  row-gap: 10px;
+  align-items: center;
+}
+
+input {
+  font-size: 16px;
+  padding: 13px;
+}
+
+p {
+  font-size: 30px;
+}
+
+.add {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: rgb(73, 218, 73);
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  padding: 15px;
+}
+
+.delete {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: rgb(227, 17, 17);
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  padding: 15px;
+}
