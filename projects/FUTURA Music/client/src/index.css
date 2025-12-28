@@ -1,0 +1,193 @@
+/* Tailwind base styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global guards (prevents horizontal overflow + flex truncation issues) */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100dvh;
+}
+
+* {
+  min-width: 0;
+}
+
+/* Futuristic dark gradient background + readable text */
+body {
+  @apply bg-slate-950 text-slate-100 text-[15px] leading-normal;
+  background-image: theme('backgroundImage.hero-gradient');
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Reusable UI utilities (glassmorphism + neon) */
+@layer components {
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-xl
+           shadow-[inset_0_0_1px_rgba(255,255,255,0.25),0_10px_30px_rgba(0,0,0,0.35)];
+  }
+
+  .glass-nav {
+    @apply sticky top-0 z-50 backdrop-blur-lg bg-white/5 border-b border-white/10;
+  }
+
+  .player-glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-0.5
+           hover:shadow-[0_12px_30px_rgba(168,85,247,0.25)];
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-fuchsia-400 to-purple-500;
+  }
+
+  .neon-btn {
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 font-medium
+           text-white transition-all duration-200
+           bg-gradient-to-r from-cyan-500 to-fuchsia-500
+           shadow-[0_0_20px_rgba(244,114,182,0.4)]
+           hover:shadow-[0_0_35px_rgba(244,114,182,0.6)]
+           hover:scale-[1.02] active:scale-95;
+  }
+
+  .neon-outline-btn {
+    @apply px-3 py-1 rounded-md border border-white/30 text-white/90 transition
+           hover:border-fuchsia-400 hover:text-white
+           hover:shadow-[0_0_14px_rgba(244,114,182,0.5)];
+  }
+
+  .neon-input {
+    @apply w-full px-3 py-2 rounded-md text-white placeholder-white/60
+           bg-white/5 border border-white/20 transition
+           focus:outline-none focus:ring-2 focus:ring-fuchsia-500/60 focus:border-fuchsia-400;
+  }
+
+  /* Centered volume slider (track + knob) */
+  .volume-slider {
+    @apply cursor-pointer w-full;
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+  }
+
+  .volume-slider::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    background: #fff;
+    margin-top: -4px;
+    box-shadow: 0 0 10px rgba(244, 114, 182, 0.6);
+  }
+
+  /* Dark select dropdown + custom chevron */
+  .select-wrapper {
+    @apply relative inline-block;
+  }
+
+  .select-dark {
+    @apply neon-input pr-10;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color-scheme: dark;
+    background-image: none;
+  }
+
+  .select-dark option {
+    color: #fff;
+    background-color: #0b1220;
+  }
+
+  .chevron {
+    @apply pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/70;
+  }
+
+  /* Auth layout utilities (mobile-first: stack; desktop: two columns) */
+  .auth-shell {
+    @apply min-h-[calc(100vh-64px)] flex items-center justify-center px-4 sm:px-6 py-10;
+  }
+
+  .auth-card {
+    @apply w-full max-w-5xl overflow-hidden rounded-3xl
+           bg-white/10 backdrop-blur-md border border-white/15
+           shadow-[0_30px_80px_rgba(0,0,0,0.55)];
+  }
+
+  .auth-grid {
+    @apply grid grid-cols-1 md:grid-cols-2;
+  }
+
+  /* IMPORTANT: not hidden on mobile; stacks with border-b */
+  .auth-side {
+    @apply flex flex-col justify-between p-6 sm:p-8 md:p-10
+           border-b md:border-b-0 md:border-r border-white/10;
+  }
+
+  .auth-form {
+    @apply p-6 sm:p-8 md:p-10;
+  }
+
+  .auth-title {
+    @apply text-4xl font-bold leading-tight;
+  }
+
+  .auth-subtitle {
+    @apply mt-2 text-sm text-white/60;
+  }
+
+  .auth-input {
+    @apply px-4 py-3 rounded-xl bg-black/35 text-white
+           border border-white/15
+           focus:outline-none focus:ring-2 focus:ring-fuchsia-500/60
+           placeholder-white/40;
+  }
+
+  .auth-primary-btn {
+    @apply w-full h-11 rounded-xl font-semibold text-white
+           bg-gradient-to-r from-purple-600 to-blue-600
+           shadow-md hover:shadow-purple-500/40
+           transition-transform duration-150 hover:scale-[1.01]
+           active:scale-[0.99]
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+  }
+}
+
+/* Scrollbar utilities (global, not Tailwind components) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
