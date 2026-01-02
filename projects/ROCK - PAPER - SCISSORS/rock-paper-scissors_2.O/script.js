@@ -1,29 +1,34 @@
-// Initialize game statistics
-let total = 0; // Total number of games played
-let wins = 0; // Number of games the player has won
-let losses = 0; // Number of games the player has lost
-let ties = 0; // Number of games that ended in a tie
+// ------------------------------
+// Load saved game statistics
+// ------------------------------
+const savedStats = JSON.parse(localStorage.getItem('rps-stats')) || {
+  total: 0,
+  wins: 0,
+  losses: 0,
+  ties: 0
+};
 
-// Function to play the game
+let total = savedStats.total;
+let wins = savedStats.wins;
+let losses = savedStats.losses;
+let ties = savedStats.ties;
+
+// Update UI on page load
+updateUI();
+
+// ------------------------------
+// Play Game Function
+// ------------------------------
 function playGame(playerChoice) {
-  // Array of possible choices
   const choices = ['rock', 'paper', 'scissors'];
-  // Randomly select a choice for the computer
   const computerChoice = choices[Math.floor(Math.random() * choices.length)];
-  // Get references to the result and statistics elements
-  const resultElement = document.getElementById('result');
-  const totalElement = document.getElementById('total');
-  const winsElement = document.getElementById('wins');
-  const lossesElement = document.getElementById('losses');
-  const tiesElement = document.getElementById('ties');
 
-  // Determine the result of the game
+  const resultElement = document.getElementById('result');
+
   if (playerChoice === computerChoice) {
-    // If both choices are the same, it's a tie
     ties++;
     resultElement.textContent = `It's a tie! Both chose ${playerChoice}.`;
   } else if (
-    // Conditions for the player to win
     (playerChoice === 'rock' && computerChoice === 'scissors') ||
     (playerChoice === 'paper' && computerChoice === 'rock') ||
     (playerChoice === 'scissors' && computerChoice === 'paper')
@@ -31,30 +36,43 @@ function playGame(playerChoice) {
     wins++;
     resultElement.textContent = `You win! ${playerChoice} beats ${computerChoice}.`;
   } else {
-    // If the player doesn't win and it's not a tie, the computer wins
     losses++;
     resultElement.textContent = `You lose! ${computerChoice} beats ${playerChoice}.`;
   }
 
-  // Increment the total number of games played
   total++;
-  // Update the statistics display
-  totalElement.textContent = total;
-  winsElement.textContent = wins;
-  lossesElement.textContent = losses;
-  tiesElement.textContent = ties;
+
+  saveToLocalStorage();
+  updateUI();
 }
 
-// Function to reset the game statistics
+// ------------------------------
+// Reset Game Function
+// ------------------------------
 function reset() {
   total = 0;
   wins = 0;
   losses = 0;
   ties = 0;
 
+  localStorage.removeItem('rps-stats');
+  document.getElementById('result').textContent = "Make your move!";
+  updateUI();
+}
+
+// ------------------------------
+// Helper Functions
+// ------------------------------
+function saveToLocalStorage() {
+  localStorage.setItem(
+    'rps-stats',
+    JSON.stringify({ total, wins, losses, ties })
+  );
+}
+
+function updateUI() {
   document.getElementById('total').textContent = total;
   document.getElementById('wins').textContent = wins;
   document.getElementById('losses').textContent = losses;
   document.getElementById('ties').textContent = ties;
-  document.getElementById('result').textContent = "Make your move!";
 }
