@@ -1,4 +1,4 @@
-# JavaMiniChat (ChitChat)
+# 🗨️ JavaMiniChat (ChitChat)
 
 A mini WhatsApp-style chat application built with **Java Swing**, **Socket programming**, and **MongoDB** (server-side only).  
 It demonstrates real-time messaging, client–server architecture, and MongoDB integration in a clean, beginner-friendly way.
@@ -37,15 +37,16 @@ It demonstrates real-time messaging, client–server architecture, and MongoDB i
 ## Project Structure
 
 ```
-JavaChatProject/
-  lib/                         # external JARs (Mongo + Gson)
-  bin/                         # compiled output
-  src/
-    app/                       # entry points (ClientMain/ServerMain/Main)
-    common/                    # shared utilities (Protocol, JsonUtil, Theme, etc.)
-    client/                    # client UI + networking + local storage
-    server/                    # server networking + repositories + mongo manager
-  README.md
+JavaMiniChatProject/
+├── lib/                    # External JAR dependencies (MongoDB, Gson, etc.)
+├── bin/                    # Compiled .class files (build output)
+├── src/
+│   ├── app/                # Application entry points
+│   ├── common/             # Shared utilities and models
+│   ├── client/             # Client-side logic      
+│   └── server/             # Server-side logic     # MongoDB connection & manager
+├── .gitignore              # Git ignored files
+└── README.md               # Project documentation
 ```
 
 ---
